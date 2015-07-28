@@ -1,0 +1,20 @@
+{
+  "name": "Gyoogle",
+  "version": "0.0.1",
+  "author": "pastak",
+  "permissions": [
+    "<all_urls>",
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["main.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.google.com/search*", "*://www.google.co.jp/search*"],
+      "js": ["content.js"]
+    }
+  ],
+  "manifest_version": 2
+}
