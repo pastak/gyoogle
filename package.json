@@ -8,6 +8,11 @@
   "author": "pastak",
   "license": "MIT",
   "standard": {
-    "global": ["chrome"]
+    "global": [
+      "chrome"
+    ]
+  },
+  "devDependencies": {
+    "standard": "^4.5.4"
   }
 }
