@@ -43,21 +43,26 @@
     ivySearchContainer.appendChild(header)
 
     let imageListContainer = document.createElement('div')
-    imageListContainer.style.height = '110px'
-    imageListContainer.style.overflowY = 'scroll'
-    ivySearchContainer.appendChild(imageListContainer)
 
     chrome.runtime.sendMessage({keyword}, function (response) {
-      JSON.parse(response).slice(0, 24).forEach(function (item) {
-        let imageContainer = document.createElement('span')
-        imageContainer.style.margin = '0 3px'
-        imageContainer.innerHTML = `
-        <a href='${item.permalink_url}' target='_blank'>
-        <img src='${item.search_thumb_url}' />
-        </a>
-        `
-        imageListContainer.appendChild(imageContainer)
-      })
+      if (response === '[]') { // if result is null, not show containter.
+        imageListContainer.innerText = 'There is no image about such keyword.'
+        ivySearchContainer.appendChild(imageListContainer)
+      } else {
+        imageListContainer.style.height = '110px'
+        imageListContainer.style.overflowY = 'scroll'
+        ivySearchContainer.appendChild(imageListContainer)
+        JSON.parse(response).slice(0, 24).forEach(function (item) {
+          let imageContainer = document.createElement('span')
+          imageContainer.style.margin = '0 3px'
+          imageContainer.innerHTML = `
+          <a href='${item.permalink_url}' target='_blank'>
+          <img src='${item.search_thumb_url}' />
+          </a>
+          `
+          imageListContainer.appendChild(imageContainer)
+        })
+      }
     })
   }
   let oldKeyword = ''
