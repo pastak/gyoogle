@@ -45,14 +45,15 @@
     let imageListContainer = document.createElement('div')
 
     chrome.runtime.sendMessage({keyword}, function (response) {
-      if (response === '[]') { // if result is null, not show containter.
+      const images = JSON.parse(response)
+      if (images.length === 0) {
         imageListContainer.innerText = 'There is no image about such keyword.'
         ivySearchContainer.appendChild(imageListContainer)
       } else {
         imageListContainer.style.height = '110px'
         imageListContainer.style.overflowY = 'scroll'
         ivySearchContainer.appendChild(imageListContainer)
-        JSON.parse(response).slice(0, 24).forEach(function (item) {
+        images.slice(0, 24).forEach(function (item) {
           let imageContainer = document.createElement('span')
           imageContainer.style.margin = '0 3px'
           imageContainer.innerHTML = `
