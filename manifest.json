@@ -6,6 +6,11 @@
     "<all_urls>",
     "tabs"
   ],
+  "applications": {
+    "gecko": {
+      "id": "gyoogle@pastak.net"
+    }
+  },
   "background": {
     "scripts": ["main.js"],
     "persistent": false

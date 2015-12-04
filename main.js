@@ -2,7 +2,7 @@
 (function () {
   'use strict'
   chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    const searchUrl = `https://gyazo.com/images/search?q=${request.keyword}`
+    const searchUrl = `https://gyazo.com/images/search.json?q=${request.keyword}`
     let xhr = new XMLHttpRequest()
     xhr.open('GET', searchUrl)
     xhr.onreadystatechange = function () {
